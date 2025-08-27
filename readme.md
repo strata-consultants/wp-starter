@@ -34,6 +34,8 @@ Install the following plugins for full functionality:
 {{ get_option('field_name') }}
 ```
 
+---
+
 ## Environment Setup
 
 -   Create an env.php file at the project root.
@@ -52,6 +54,8 @@ if (wp_get_environment_type() === 'production') {
 }
 ```
 
+---
+
 ## Global Variables
 
 All global variables should be declared inside the `add_to_context` method located in:
@@ -60,6 +64,8 @@ All global variables should be declared inside the `add_to_context` method locat
 src/timber/starter.php
 ```
 
+---
+
 ## Helper Methods for Twig
 
 To register new helper functions for Twig, use the `add_functions_to_twig` method inside:
@@ -67,6 +73,8 @@ To register new helper functions for Twig, use the `add_functions_to_twig` metho
 ```bash
 src/timber/starter.php
 ```
+
+---
 
 ## File Structure
 
