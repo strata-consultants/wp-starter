@@ -1,0 +1,54 @@
+name: Deploy WordPress Theme to Production Server
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v4
+
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: 8.3
+
+            - name: Install Composer Dependencies
+              run: composer install --optimize-autoloader --no-dev --no-progress --no-interaction --prefer-dist
+
+            - name: Install Node
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '20'
+
+            - name: Install NPM Dependencies
+              run: npm install
+
+            - name: Build NPM Assets
+              run: npm run build
+
+            - name: Synchronize Files To Production
+              uses: easingthemes/ssh-deploy@main
+              env:
+                  SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+                  SOURCE: '.'
+                  REMOTE_HOST: ${{ secrets.SG_SSH_HOST }}
+                  REMOTE_USER: ${{ secrets.SG_SSH_USER }}
+                  REMOTE_PORT: ${{ secrets.SG_SSH_PORT }}
+                  TARGET: '~/www/strataquote.com.au/public_html/wp-content/themes/strataquote-wp'
+                  ARGS: '--delete --exclude=/vendor --exclude=/node_modules'
+
+            - name: Run Remote/Artisan Commands
+              uses: appleboy/ssh-action@v0.1.6
+              with:
+                  host: ${{ secrets.SG_SSH_HOST }}
+                  username: ${{ secrets.SG_SSH_USER }}
+                  port: ${{ secrets.SG_SSH_PORT }}
+                  key: ${{ secrets.SSH_PRIVATE_KEY }}
+                  script: |
+                      cd ~/www/strataquote.com.au/public_html/wp-content/themes/strataquote-wp
+
