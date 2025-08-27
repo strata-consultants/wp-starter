@@ -64,7 +64,6 @@ class StarterSite extends Timber\Site
             'get_option' => ['callable' => function (string $key): ?string {
                 return get_field($key, 'option');
             }],
-            'settings_fields' => ['callable' => 'settings_fields'],
         ];
 
         return array_merge($functions, $additional_functions);
