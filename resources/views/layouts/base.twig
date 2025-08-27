@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+
+    {% include 'layouts/partials/head.twig' %}
+
+    {% block head_addon %}
+    {% endblock %}
+
+    {{ function('wp_head') }}
+
+    {% block head_overrides %}
+    {% endblock %}
+
+    {% if get_option('gtm_id') %}
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','{{ get_option('gtm_id') }}');
+    </script>
+    {% endif %}
+
+</head>
+<body class="selection:bg-emerald-600 text-neutral-900 selection:text-white {{ body_class }}">
+{% if get_option('gtm_id') %}
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ get_option('gtm_id') }}"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+{% endif %}
+
+{% include 'layouts/partials/nav.twig' %}
+
+{% block content %}
+{% endblock %}
+
+{% include 'layouts/partials/footer.twig' %}
+
+{% block footer_addon %}
+{% endblock %}
+
+<script>
+</script>
+
+{{ function('wp_footer') }}
+</body>
+</html>
