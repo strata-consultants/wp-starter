@@ -7,7 +7,6 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 /**
  * Env
- * create an env.php file and add define('WP_ENVIRONMENT_TYPE', 'local');
  */
 get_template_part('env');
 

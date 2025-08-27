@@ -57,16 +57,17 @@ class StarterSite extends Timber\Site
 
     public function add_functions_to_twig(array $functions): array
     {
-        $additional_functions = [
-            'asset' => ['callable' => function (string $path): string {
-                return get_stylesheet_directory_uri() . '/' . ltrim($path, '/');
-            }],
-            'get_option' => ['callable' => function (string $key): ?string {
-                return get_field($key, 'option');
-            }],
+        return [
+            ...$functions,
+            ...[
+                'asset' => ['callable' => function (string $path): string {
+                    return get_stylesheet_directory_uri() . '/' . ltrim($path, '/');
+                }],
+                'get_option' => ['callable' => function (string $key): ?string {
+                    return get_field($key, 'option');
+                }],
+            ],
         ];
-
-        return array_merge($functions, $additional_functions);
     }
 }
 
