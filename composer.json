@@ -1,5 +1,14 @@
 {
+    "name": "smc/wp-starter",
+    "type": "project",
+    "description": "Our own wp starter kit",
+    "keywords": [
+        "wordpress",
+        "timber"
+    ],
+    "license": "MIT",
     "require": {
         "timber/timber": "^2.3"
     }
 }
+
