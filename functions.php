@@ -6,6 +6,11 @@
 require_once __DIR__ . '/vendor/autoload.php';
 
 /**
+ * Env
+ */
+get_template_part('env');
+
+/**
  * Timber
  */
 Timber\Timber::init();
@@ -19,4 +24,4 @@ if (class_exists('Timber')) {
 /**
  * Remove/Disable WP Bloats
  */
-get_template_part('src/remove-wp-bloats');
+get_template_part('src/remove-wp-bloat');
