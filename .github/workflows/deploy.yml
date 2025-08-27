@@ -2,7 +2,7 @@ name: Deploy WordPress Theme to Production Server
 on:
     push:
         branches:
-            - main
+            - dev
 
 jobs:
     deploy:
@@ -39,7 +39,7 @@ jobs:
                   REMOTE_HOST: ${{ secrets.SG_SSH_HOST }}
                   REMOTE_USER: ${{ secrets.SG_SSH_USER }}
                   REMOTE_PORT: ${{ secrets.SG_SSH_PORT }}
-                  TARGET: '~/www/strataquote.com.au/public_html/wp-content/themes/strataquote-wp'
+                  TARGET: '~/www/project/public_html/wp-content/themes/project'
                   ARGS: '--delete --exclude=/vendor --exclude=/node_modules'
 
             - name: Run Remote/Artisan Commands
@@ -50,5 +50,5 @@ jobs:
                   port: ${{ secrets.SG_SSH_PORT }}
                   key: ${{ secrets.SSH_PRIVATE_KEY }}
                   script: |
-                      cd ~/www/strataquote.com.au/public_html/wp-content/themes/strataquote-wp
+                      cd ~/www/project/public_html/wp-content/themes/project
 
