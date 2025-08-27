@@ -25,3 +25,8 @@ if (class_exists('Timber')) {
  * Remove/Disable WP Bloats
  */
 get_template_part('src/remove-wp-bloat');
+
+/**
+ * Disable Admin Bar
+ */
+add_filter('show_admin_bar', '__return_false');
