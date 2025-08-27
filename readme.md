@@ -1,0 +1,1 @@
+# SMC WP Starter
