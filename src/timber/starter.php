@@ -41,6 +41,10 @@ class StarterSite extends Timber\Site
 
     public function theme_supports(): void
     {
+        add_theme_support('title-tag');
+        add_theme_support('post-thumbnails');
+        add_theme_support('menus');
+
         add_theme_support(
             'html5',
             [
@@ -50,9 +54,6 @@ class StarterSite extends Timber\Site
                 'caption',
             ]
         );
-
-        add_theme_support('post-thumbnails');
-        add_theme_support('menus');
     }
 
     public function add_functions_to_twig(array $functions): array
